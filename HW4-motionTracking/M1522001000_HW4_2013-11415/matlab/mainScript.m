@@ -6,5 +6,5 @@ num_frames = 700;
 
 %complete your functions
 
-%test_motion(dir_car,num_frames);
+test_motion(dir_car,num_frames);
 trackTemplate(dir_car,sigma);
