@@ -1,0 +1,5 @@
+p initial value
+noise
+d_x d_y = u, v. d_xx, d_xy...?
+moving_image: the nonzero pixels correspond to locations of moving objects. ?
+T range
