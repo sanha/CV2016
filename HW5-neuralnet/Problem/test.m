@@ -1,4 +1,3 @@
-function pooledFeatures = cnnPool(poolDim, convolvedFeatures)
 %cnnPool Pools the given convolved features
 %
 % Parameters:
@@ -34,19 +33,25 @@ pooledDim = floor(convolvedDim / poolDim);
 for imageNum = 1:numImages
   for featureNum = 1:numFeatures
     pooledFeature = zeros(pooledDim);
+    convolvedFeature = convolvedFeatures(featureNum, imageNum, :, :);
     for regionRow = 1:pooledDim
       imRow = (regionRow - 1) * poolDim + 1;
-      imRowEnd = imRow + poolDim - 1;
+      if regionRow ~= pooledDim
+        imRowEnd = imRow + poolDim;
+      else
+        imRowEnd = convolvedDim;
+      end
       for regionCol = 1:pooledDim
         imCol = (regionCol - 1) * poolDim + 1;
-        imColEnd = imCol + poolDim - 1;
-        region = convolvedFeatures(featureNum, imageNum, imRow:imRowEnd, imCol:imColEnd);
+        if regionCol ~= pooledDim
+          imColEnd = imCol + poolDim;
+        else
+          imColEnd = convolvedDim;
+        end
+        region = convolvedFeature(1, 1, imRow:imRowEnd, imCol:imColEnd);
         pooledFeature(regionRow, regionCol) = mean(mean(region));
       end
     end
     pooledFeatures(featureNum, imageNum, :, :) = pooledFeature;
   end
 end
-
-end
-

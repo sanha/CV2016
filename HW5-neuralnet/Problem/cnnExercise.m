@@ -9,7 +9,7 @@
 %  You will not need to modify this file.
 
 %%======================================================================
-%% STEP 0: Initialization
+% STEP 0: Initialization
 %  Here we initialize some parameters used for the exercise.
 
 imageDim = 64;         % image dimension
@@ -27,7 +27,7 @@ epsilon = 0.1;	       % epsilon for ZCA whitening
 poolDim = 19;          % dimension of pooling region
 
 %%======================================================================
-%% STEP 1: Train a sparse autoencoder (with a linear decoder) to learn 
+% STEP 1: Train a sparse autoencoder (with a linear decoder) to learn 
 %  features from color patches. If you have completed the linear decoder
 %  execise, use the features that you have obtained from that exercise, 
 %  loading them into optTheta. Recall that we have to keep around the 
@@ -52,13 +52,13 @@ b = optTheta(2*hiddenSize*visibleSize+1:2*hiddenSize*visibleSize+hiddenSize);
 displayColorNetwork( (W*ZCAWhite)');
 
 %%======================================================================
-%% STEP 2: Implement and test convolution and pooling
+% STEP 2: Implement and test convolution and pooling
 %  In this step, you will implement convolution and pooling, and test them
 %  on a small part of the data set to ensure that you have implemented
 %  these two functions correctly. In the next step, you will actually
 %  convolve and pool the features with the STL10 images.
 
-%% STEP 2a: Implement convolution
+% STEP 2a: Implement convolution
 %  Implement convolution in the function cnnConvolve in cnnConvolve.m
 
 % Note that we have to preprocess the images in the exact same way 
@@ -66,13 +66,13 @@ displayColorNetwork( (W*ZCAWhite)');
 
 load stlTrainSubset.mat % loads numTrainImages, trainImages, trainLabels
 
-%% Use only the first 8 images for testing
+% Use only the first 8 images for testing
 convImages = trainImages(:, :, :, 1:8); 
 
 % NOTE: Implement cnnConvolve in cnnConvolve.m first!
 convolvedFeatures = cnnConvolve(patchDim, hiddenSize, convImages, W, b, ZCAWhite, meanPatch);
 
-%% STEP 2b: Checking your convolution
+% STEP 2b: Checking your convolution
 %  To ensure that you have convolved the features correctly, we have
 %  provided some code to compare the results of your convolution with
 %  activations from the sparse autoencoder
