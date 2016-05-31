@@ -10,13 +10,12 @@ function [cost, grad] = softmaxCost(theta, numClasses, inputSize, lambda, data, 
 
 % Unroll the parameters from theta
 theta = reshape(theta, numClasses, inputSize);
-
 numCases = size(data, 2);
 
 groundTruth = full(sparse(labels, 1:numCases, 1));
-cost = 0;
+%cost = 0;
 
-thetagrad = zeros(numClasses, inputSize);
+%thetagrad = zeros(numClasses, inputSize);
 
 %% ---------- YOUR CODE HERE --------------------------------------
 %  Instructions: Compute the cost and gradient for softmax regression.
@@ -34,6 +33,18 @@ thetagrad = zeros(numClasses, inputSize);
 
 % note that if we subtract off after taking the exponent, as in the
 % text, we get NaN
+
+hyp = exp(theta * data);
+sum_hyp = sum(hyp);
+p = zeros(numClasses, numCases);
+cost_cases = zeros(1, numCases);
+for i=1:numCases
+    p(:, i) = hyp(:, i) / sum_hyp(i);
+    cost_cases(i) = log(p(labels(i), i));
+end
+cost = -(sum(cost_cases) / numCases) + lambda * sum(sum(theta .^ 2)) / 2;
+
+thetagrad = -((groundTruth - p) * data' / numCases) + lambda * theta;
 
 % ------------------------------------------------------------------
 % Unroll the gradient matrices into a vector for minFunc

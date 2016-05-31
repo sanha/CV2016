@@ -105,13 +105,13 @@ end
 
 disp('Congratulations! Your convolution code passed the test.');
 
-%% STEP 2c: Implement pooling
+% STEP 2c: Implement pooling
 %  Implement pooling in the function cnnPool in cnnPool.m
 
 % NOTE: Implement cnnPool in cnnPool.m first!
 pooledFeatures = cnnPool(poolDim, convolvedFeatures);
 
-%% STEP 2d: Checking your pooling
+% STEP 2d: Checking your pooling
 %  To ensure that you have implemented pooling, we will use your pooling
 %  function to pool over a test matrix and check the results.
 
@@ -201,6 +201,9 @@ toc();
 
 % Add the path to your softmax solution, if necessary
 % addpath /path/to/solution/
+
+%load './cnnPooledFeatures.mat'
+%load stlTestSubset.mat  % loads numTestImages,  testImages,  testLabels
 
 % Setup parameters for softmax
 softmaxLambda = 1e-4;
