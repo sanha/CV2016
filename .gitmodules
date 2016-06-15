@@ -1,0 +1,3 @@
+[submodule "car-faster-rcnn"]
+	path = car-faster-rcnn
+	url = https://github.com/lsc2687/car-faster-rcnn
